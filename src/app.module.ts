@@ -29,4 +29,10 @@ import { TenancyModule } from './tenancy/tenancy.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  static port: number;
+
+  constructor(private readonly configService: ConfigService) {
+    AppModule.port = this.configService.get('APP_PORT');
+  }
+}

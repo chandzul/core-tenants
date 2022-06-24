@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  app.setGlobalPrefix(':tenant?/api'); // urlapi.com/namecompany/api/users -> namecompany name
+
+  await app.listen(AppModule.port || 3000);
 }
+
 bootstrap();
