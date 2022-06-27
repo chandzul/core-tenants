@@ -38,17 +38,27 @@ export class TenancyModule {
           );
         }
 
+        const type = this.configService.get('DB_TYPE');
+
         try {
-          const type = this.configService.get('DB_TYPE');
           getDataSourceName({
             type: type,
             schema: tenant.name,
           });
           next();
         } catch (e) {
-          await this.connection.query(
-            `CREATE SCHEMA IF NOT EXISTS "${tenant.name}"`,
-          );
+          switch (type) {
+            case 'mysql':
+              await this.connection.query(
+                `CREATE DATABASE IF NOT EXISTS "${tenant.name}"`,
+              );
+              break;
+            case 'postgres':
+              await this.connection.query(
+                `CREATE SCHEMA IF NOT EXISTS "${tenant.name}"`,
+              );
+              break;
+          }
 
           /**
            * This configuration could get to config tenancy and connect with

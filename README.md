@@ -41,8 +41,19 @@ $ npm run test:cov
 ~ npm install --save @nestjs/typeorm typeorm
 
 // postgres
-~ npm i @nestjs/config @nestjs/typeorm typeorm pg class-validator class-transformer
+~ npm i @nestjs/config pg class-validator class-transformer
 ~ npm i -D @types/node
+```
+## Git commands
+
+```
+// Crear tag -> git tag -a "v1.5.0-beta" -m "version v1.5.0-beta"
+// https://devconnected.com/how-to-create-git-tags/
+~ git tag -a v0.0.0 -m "description txt here!"
+
+
+// Subir tag al repositorio
+~ git push origin v0.0.0
 ```
 
 ## Support
